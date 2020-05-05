@@ -42,6 +42,8 @@ const NewGame = (props) => {
 
         firestore.collection("users").doc(user.uid).update({
             games: updatedGames
+        }).then(() => {
+            history.push("/");
         });
     };
 

@@ -9,6 +9,7 @@ import LoadingCircle from './LoadingCircle';
 import { Container } from '@material-ui/core';
 import { UserContext } from './providers/UserProvider';
 import { firestore } from './firebase';
+import NewRound from './NewRound';
 
 
 const App = () => {
@@ -49,7 +50,7 @@ const App = () => {
 							<LoadingCircle /> :
 							currentGame === undefined ?
 								<Redirect to="/newgame" /> :
-								<Score currentGame={currentGame} />
+								<Score preferences={preferences} games={games} currentGame={currentGame} />
 					}
 				</Route>
 				<Route path="/newgame">
@@ -60,6 +61,9 @@ const App = () => {
 				</Route>
 				<Route path="/history">
 					<History />
+				</Route>
+				<Route path="/new-round">
+					<NewRound preferences={preferences} games={games} players={currentGame && currentGame.players} />
 				</Route>
 			</Container>
 		</Router>
