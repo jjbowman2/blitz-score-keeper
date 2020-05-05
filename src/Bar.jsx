@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     }
 })
 
-const Bar = (props) => {
+const Bar = () => {
     const user = useContext(UserContext);
     const avatarSrc = user && user.photoURL;
     const classes = useStyles();
