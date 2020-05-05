@@ -41,6 +41,11 @@ const Bar = () => {
         history.push("/history");
     };
 
+    const handleLearnToPlay = () => {
+        setAnchorEl(null);
+        window.open("https://www.youtube.com/watch?v=6n3VyC0ngY8", '_blank');
+    };
+
     const handleLogout = () => {
         auth.signOut();
         setAnchorEl(null);
@@ -64,6 +69,7 @@ const Bar = () => {
                     <MenuItem onClick={handleNewGame}>New Game</MenuItem>
                     <MenuItem onClick={handlePreferences}>Preferences</MenuItem>
                     <MenuItem onClick={handleHistory}>History</MenuItem>
+                    <MenuItem onClick={handleLearnToPlay}>Learn to Play</MenuItem>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
             </Toolbar>

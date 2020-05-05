@@ -63,9 +63,10 @@ const Score = (props) => {
                         return (
                             <ExpansionPanel key={`player${index}`}>
                                 <ExpansionPanelSummary>
-                                    <Typography>{`${player}: ${playerScores[player]}`}</Typography>
+                                    <Typography>{`${player}:`}</Typography>
                                     {currentWinner.name === player &&
                                         <EmojiEventsIcon style={{ marginLeft: "auto" }} />}
+                                    <Typography style={currentWinner.name !== player ? { marginLeft: "auto" } : {}}>{playerScores[player]}</Typography>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                     <GridList className={classes.gridList} cols={matches ? 4 : 2}>
@@ -73,7 +74,7 @@ const Score = (props) => {
                                             let result;
                                             if (props.preferences && props.preferences["enter-by-total"]) {
                                                 result = (
-                                                    <GridListTile key={`player${player}Round${index}`} rows={.5}>
+                                                    <GridListTile key={`player${player}Round${index}`} cols={matches ? 2 : 1} rows={.5}>
                                                         <FormControl>
                                                             <InputLabel htmlFor={`player${player}Round${index}`}>{`Round ${index + 1}`}</InputLabel>
                                                             <Input id={`player${player}Round${index}`} type="number" value={round.positive - round.negative} readOnly />
