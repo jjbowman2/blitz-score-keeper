@@ -59,7 +59,7 @@ const Score = (props) => {
                 <>
                     <br />
                     <Typography variant="h6">Current Score</Typography>
-                    {players && Object.keys(players).map((player, index) => {
+                    {players && Object.keys(players).sort((p1, p2) => playerScores[p2] - playerScores[p1]).map((player, index) => {
                         return (
                             <ExpansionPanel key={`player${index}`}>
                                 <ExpansionPanelSummary>

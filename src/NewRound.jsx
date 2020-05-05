@@ -109,6 +109,7 @@ const NewRound = (props) => {
                                 player={player}
                                 handleNewPlayerScores={handleNewPlayerScores}
                                 byTotal={props.preferences && props.preferences["enter-by-total"]}
+                                active={index === activeStep}
                             />
                         ))}
                     </SwipeableViews>

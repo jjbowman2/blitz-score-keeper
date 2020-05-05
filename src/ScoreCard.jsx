@@ -1,27 +1,51 @@
-import React from 'react'
-import { Card, CardContent, Typography, FormControl, InputLabel, Input } from '@material-ui/core';
+import React, { useRef, useEffect } from 'react'
+import { Card, CardContent, Typography, TextField } from '@material-ui/core';
 
 const ScoreCard = (props) => {
     let forms;
 
+    const negRef = useRef(null);
+    const posRef = useRef(null);
+
+    useEffect(() => {
+        if (props.active) {
+            const timeout = setTimeout(() => {
+                posRef.current.focus();
+            }, 300);
+
+            return () => {
+                clearTimeout(timeout);
+            };
+        }
+    }, [props])
+
     if (props.byTotal) {
         forms = (
-            <FormControl fullWidth>
-                <InputLabel htmlFor={`${props.player}ScoreInput`}>New Round Score</InputLabel>
-                <Input id={`${props.player}ScoreInput`} type="number" onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "positive")} />
-            </FormControl>
+            <TextField
+                label="New Round Score"
+                type="number"
+                onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "positive")}
+                inputRef={posRef}
+                fullWidth
+            />
         );
     } else {
         forms = (
             <>
-                <FormControl fullWidth>
-                    <InputLabel htmlFor={`${props.player}NegativeScoreInput`}>New Round Negative Score</InputLabel>
-                    <Input id={`${props.player}NegativeScoreInput`} type="number" onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "negative")} />
-                </FormControl>
-                <FormControl fullWidth>
-                    <InputLabel htmlFor={`${props.player}PositiveScoreInput`}>New Round Positive Score</InputLabel>
-                    <Input id={`${props.player}PositiveScoreInput`} type="number" onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "positive")} />
-                </FormControl>
+                <TextField
+                    label="New Round Negative Score"
+                    type="number"
+                    onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "negative")}
+                    inputRef={posRef}
+                    fullWidth
+                />
+                <TextField
+                    label="New Round Positive Score"
+                    type="number"
+                    onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "positive")}
+                    inputRef={negRef}
+                    fullWidth
+                />
             </>
         );
     }
