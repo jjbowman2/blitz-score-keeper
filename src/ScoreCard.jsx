@@ -4,20 +4,17 @@ import { Card, CardContent, Typography, TextField } from '@material-ui/core';
 const ScoreCard = (props) => {
     let forms;
 
-    const negRef = useRef(null);
-    const posRef = useRef(null);
+    const inputRef = useRef(null);
 
     useEffect(() => {
         if (props.active) {
-            const timeout = setTimeout(() => {
-                posRef.current.focus();
-            }, 300);
+            // const timeout = setTimeout(() => {
+            inputRef.current.focus();
+            // }, 500);
 
-            return () => {
-                clearTimeout(timeout);
-            };
+            // return () => clearTimeout(timeout);
         }
-    }, [props])
+    }, [props.active])
 
     if (props.byTotal) {
         forms = (
@@ -25,7 +22,7 @@ const ScoreCard = (props) => {
                 label="New Round Score"
                 type="number"
                 onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "positive")}
-                inputRef={posRef}
+                inputRef={inputRef}
                 fullWidth
             />
         );
@@ -36,14 +33,13 @@ const ScoreCard = (props) => {
                     label="New Round Negative Score"
                     type="number"
                     onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "negative")}
-                    inputRef={posRef}
+                    inputRef={inputRef}
                     fullWidth
                 />
                 <TextField
                     label="New Round Positive Score"
                     type="number"
                     onChange={event => props.handleNewPlayerScores(event.target.value, props.player, "positive")}
-                    inputRef={negRef}
                     fullWidth
                 />
             </>

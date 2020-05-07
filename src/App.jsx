@@ -60,7 +60,7 @@ const App = () => {
 					<Preference preferences={preferences} />
 				</Route>
 				<Route path="/history">
-					<History />
+					<History preferences={preferences} games={games && games.filter(game => !game.active)} />
 				</Route>
 				<Route path="/new-round">
 					<NewRound preferences={preferences} games={games} players={currentGame && currentGame.players} />

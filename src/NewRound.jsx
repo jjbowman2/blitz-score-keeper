@@ -57,8 +57,10 @@ const NewRound = (props) => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleStepChange = (step) => {
-        setActiveStep(step);
+    const handleStepChange = (step, type) => {
+        if (type === "end") {
+            setActiveStep(step);
+        }
     };
 
     const handleNewPlayerScores = (value, player, type) => {
@@ -99,7 +101,7 @@ const NewRound = (props) => {
                     <SwipeableViews
                         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                         index={activeStep}
-                        onChangeIndex={handleStepChange}
+                        onSwitching={handleStepChange}
                         enableMouseEvents
                     >
                         {Object.keys(props.players).map((player, index) => (

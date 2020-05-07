@@ -37,7 +37,7 @@ const NewGame = (props) => {
         updatedGames.push({
             "active": true,
             "players": playersObj,
-            "winning-score": score
+            "winning-score": Number(score)
         })
 
         firestore.collection("users").doc(user.uid).update({
