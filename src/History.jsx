@@ -45,25 +45,29 @@ const History = (props) => {
                 <div>
                     <br />
                     <Typography variant="h6">Game History</Typography>
-                    <MobileStepper
-                        steps={maxSteps}
-                        position="static"
-                        variant="text"
-                        activeStep={activeStep}
-                        nextButton={
-                            <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-                                Next
-                                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                            </Button>
-                        }
-                        backButton={
-                            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                                Back
-                            </Button>
-                        }
-                    />
-                    <GameScore {...props} currentGame={props.games[activeStep]} />
+                    {props.games.length ?
+                        <>
+                            <MobileStepper
+                                steps={maxSteps}
+                                position="static"
+                                variant="text"
+                                activeStep={activeStep}
+                                nextButton={
+                                    <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                                        Next
+                                    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                                    </Button>
+                                }
+                                backButton={
+                                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                                        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                                    Back
+                                </Button>
+                                }
+                            />
+                            <GameScore {...props} currentGame={props.games[activeStep]} />
+                        </> :
+                        <Typography>No past games found</Typography>}
                     <Fab className={classes.closeFab} onClick={() => history.push("/")}>
                         <CloseIcon />
                     </Fab>

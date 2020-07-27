@@ -105,7 +105,7 @@ const NewGame = (props) => {
                             </FormControl>
                         </ListItem>
                     </List>
-                    <Button type="submit" form="createGameForm">Done</Button>
+                    <Button color="primary" type="submit" form="createGameForm">Done</Button>
                     <Button color="secondary" disabled={!props.currentGame} onClick={() => history.push("/")}>Cancel</Button>
                 </>}
         </>
